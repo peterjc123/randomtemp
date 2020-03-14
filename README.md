@@ -37,5 +37,5 @@ cmake --build . --config Release
 
 ## Limitations
 1. It is currently only tested on Windows, but should be fairly use to adapt to Unix systems.
-2. All the arguments passed to the executable gets quoted.
+2. All the arguments passed to the executable get quoted.
 3. The generated temp directory is based on the current working directory.
