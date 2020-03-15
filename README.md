@@ -21,6 +21,10 @@ set RANDOMTEMP_EXECUTABLE=nvcc
 :: you may notice that the generated temp directories are used
 ```
 
+## Environment variables
+- RANDOMTEMP_EXECUTABLE: target executable to be patched (Required)
+- RANDOMTEMP_BASEDIR: directory to store temporary files (Optional)
+
 ## How to build this?
 Dependencies:
 - Visual Studio 2017 / 2019
@@ -37,4 +41,3 @@ cmake --build . --config Release
 ## Limitations
 1. It is currently only tested on Windows, but should be fairly use to adapt to Unix systems.
 2. All the arguments passed to the executable get quoted.
-3. The generated temp directory is based on the current working directory.
