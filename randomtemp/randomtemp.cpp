@@ -96,8 +96,6 @@ void removeAll(const char* dir) {
 
 int main(int argc, const char** argv)
 {
-  cout << argv[0] << endl;
-
   char* cwd;
   char* tempdir;
   char* tmpl;
