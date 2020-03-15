@@ -9,7 +9,7 @@ Simple usage:
 ```cmd
 set RANDOMTEMP_EXECUTABLE=set
 ./randomtemp.exe
-:: you may notice that the variables are override
+:: you may notice that the variables are overriden
 ```
 
 More complicated case:
@@ -28,7 +28,6 @@ Dependencies:
 
 You may just open it using VS GUI. Alternatively, you may run the following commands to compile it.
 ```powershell
-cd randomtemp
 mkdir build
 cd build
 cmake -G "Visual Studio 15 2017" -Ax64 ..
