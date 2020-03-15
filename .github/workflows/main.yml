@@ -25,7 +25,6 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Build
       run: |
-        cd randomtemp
         mkdir build
         cd build
         cmake -G"Visual Studio 16 2019" -Ax64 ..
