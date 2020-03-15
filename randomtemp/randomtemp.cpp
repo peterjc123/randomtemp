@@ -119,7 +119,7 @@ int main(int argc, const char** argv)
       perror("_stat error");
       exit(1);
     }
-    if (st.st_mode & _S_IFDIR) {
+    if ((st.st_mode & _S_IFDIR) != _S_IFDIR) {
       cerr << "RANDOMTEMP_BASEDIR: " << cwd << " is not a directory." << endl;
       exit(1);
     }
