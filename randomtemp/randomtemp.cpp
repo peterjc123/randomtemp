@@ -8,6 +8,7 @@
 #include <process.h>
 #include <sys/stat.h>
 
+#include <cstdlib>
 #include <iostream>
 #include <memory>
 #include <random>
@@ -49,7 +50,7 @@ char* mkdtemp(char* tmpl) {
   }
 }
 
-void removeAll(const char* dir) {
+void removeAll(const char* dir, bool removeSelf = true) {
   char* cwd;
   if ((cwd = _getcwd(nullptr, 0)) == nullptr) {
     perror("_getcwd error");
@@ -89,8 +90,10 @@ void removeAll(const char* dir) {
     exit(1);
   }
 
-  if (_rmdir(dir) != 0) {
-    perror("_rmdir error");
+  if (removeSelf) {
+    if (_rmdir(dir) != 0) {
+      perror("_rmdir error");
+    }
   }
 }
 
@@ -168,7 +171,22 @@ int main(int argc, const char** argv)
   }
   args.push_back(nullptr);
 
-  intptr_t r = _spawnve(_P_WAIT, comspec, args.data(), env_list.data());
+  char* max_trial = getenv("RANDOMTEMP_MAXTRIAL");
+  int max_times = 3;
+  if (max_trial) {
+    max_times = atoi(max_trial);
+  }
+
+  intptr_t r;
+  int retry_times = 0;
+  do {
+    if (retry_times > 0) {
+      removeAll(tempdir, false);
+      cout << "Retry attempt " << retry_times << ":" << endl;
+    }
+    r = _spawnve(_P_WAIT, comspec, args.data(), env_list.data());
+    retry_times++;
+  } while (r != 0 && retry_times <= max_times);
 
   removeAll(tempdir);
 
