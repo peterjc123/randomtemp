@@ -23,7 +23,8 @@ set RANDOMTEMP_EXECUTABLE=nvcc
 
 ## Environment variables
 - RANDOMTEMP_EXECUTABLE: target executable to be patched (Required)
-- RANDOMTEMP_BASEDIR: directory to store temporary files (Optional)
+- RANDOMTEMP_BASEDIR: directory to store temporary files (Optional, default: current working directory)
+- RANDOMTEMP_MAXTRIAL: max times for retry the command (Optional, default: 3)
 
 ## How to build this?
 Dependencies:
